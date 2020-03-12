@@ -1,1 +1,1 @@
-web: guinicorn Certificado.wsgi --log-file -
+web: gunicorn Certificado.wsgi 
