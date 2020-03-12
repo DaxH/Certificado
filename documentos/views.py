@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
-
-from documentos.models import Documento
+from documentos.models import Documento, Entidad
 from usuarios.models import Usuario
 
 def validar_documento(request):
@@ -20,19 +19,27 @@ def mostrar_certificado(request):
     if input_cedula and input_codigo_certificado:
         try:
             usuario = Usuario.objects.get(cedula = input_cedula)
-            certificado_imprimir = Documento.objects.get(usuario = usuario, codigo = input_codigo_certificado)
-            print('USUARIO ', usuario)
-            print('CERTIFICADO ', certificado_imprimir)
+            certificado = Documento.objects.get(usuario = usuario, codigo = input_codigo_certificado)
+            entidad_receptora = Entidad.objects.get(documento = certificado.pk, tipo = '1')
+            entidad_emisora =  Entidad.objects.get(documento = certificado.pk, tipo = '2')
 
             context = {
                     'input_cedula':input_cedula,
                     'input_codigo_certificado':input_codigo_certificado,
                     'usuario':usuario,
-                    'certificado_imprimir':certificado_imprimir,
+                    'entidad_receptora':entidad_receptora,
+                    'entidad_emisora':entidad_emisora,
+                    'certificado':certificado,
             }
 
-        except Usuario.DoesNotExist and Documento.DoesNotExist:
+        except Usuario.DoesNotExist:
 
+            mensaje_error = True
+            context = {
+                    'mensaje_error':mensaje_error
+            }
+
+        except Documento.DoesNotExist:
 
             mensaje_error = True
             context = {
