@@ -6,37 +6,48 @@
 </head>
 <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  {% if  input_cedula  and  input_codigo_certificado  %}
-  <div class="container">
-     <h1>Certificado</h1>
-     <div class = "row">
-       <div class = "col">
-         <img class="img-fluid" src="images/LOGO LATERAL5.png" alt="Logo" max-width: 100% height: auto>
-       </div>
-       <div class = "col">
-         <img class="img-fluid" src="images/Sene.png" alt="LogoSene" max-width: 100% height: auto>
-       </div>
-       <div class = "col">
-         <img class="img-fluid" src="images/Vilca.png" alt="LogoVilca" max-width: 100% height: auto>
-       </div>
-     </div>
-     <div class = "row">
-       <div class = "col">
-         <center><h1 class="display-4">CERTIFICA A:</h1></center><p>
-           <center><h1 class="display-4">{{ usuario.nombre }} {{ usuario.apellido }}</h1></center><p>
-           <h5>Por haber asistido a la Capacitación de </h5>
-       </div>
-     </div>
+  {% if mensaje_error %}
+    <div class="container">
+      <div class="alert alert-danger mt-2" role="alert">
+        Datos no Encontrados Revisa tus CREDENDCIALES
+      </div>
+      <a class="btn btn-info" href="{% url 'documentos:documento' %}">Volver</a>
     </div>
   {% else %}
-  <div class="container">
+    {% if  input_cedula  and  input_codigo_certificado  %}
+    <div class="container">
+       <h1>Certificado</h1>
+       <div class = "row">
+         <div class = "col">
+           <img class="img-fluid" src="images/LOGO LATERAL5.png" alt="Logo" max-width: 100% height: auto>
+         </div>
+         <div class = "col">
+           <img class="img-fluid" src="images/Sene.png" alt="LogoSene" max-width: 100% height: auto>
+         </div>
+         <div class = "col">
+           <img class="img-fluid" src="images/Vilca.png" alt="LogoVilca" max-width: 100% height: auto>
+         </div>
+       </div>
+       <div class = "row">
+         <div class = "col">
+           <center><h1 class="display-4">CERTIFICA A:</h1></center><p>
+             <center><h1 class="display-4">{{ usuario.nombre }} {{ usuario.apellido }}</h1></center><p>
+             <h5>Por haber asistido a la Capacitación de </h5>
+         </div>
+       </div>
+      </div>
+    {% else %}
+    <div class="container">
 
-    <div class="alert alert-danger mt-2" role="alert">
-      Cédula o Codigo Incorretos vuelve a Ingresarlos
+      <div class="alert alert-danger mt-2" role="alert">
+        Cédula o Codigo Incorretos vuelve a Ingresarlos
+      </div>
+      <a class="btn btn-info" href="{% url 'documentos:documento' %}">Volver</a>
     </div>
-    <a class="btn btn-info" href="{% url 'documentos:documento' %}">Volver</a>
-  </div>
+    {% endif %}
   {% endif %}
+
+
 
 
 </body>
