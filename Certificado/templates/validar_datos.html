@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
+{% load staticfiles %}
   <head>
     <meta charset="UTF-8">
   </head>
   <body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+      input[type=number]::-webkit-outer-spin-button,
+      input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type=number] {
+        -moz-appearance:textfield;
+      }
+    </style>
 
     <div align="center">
-      <img src="/static/imagenes/logoistloja.png" alt="">
+      <img src="{% static 'imagenes/logoistloja.png' %}" alt="" width="30%">
 
-        <h2 >Validación de certificados</h2><br>
-        <p   style="color:#FF0000"; style="text-align:justify">
+        <h2 class="mt-5" >Validación de certificados</h2><br>
+        <p style="color:#FF0000"; style="text-align:justify">
             Los certificados en formato electrónico que emite el Instituto Superior Tecnológico Loja , Identificación <br>
              y Cedulación deben ser validados por la institución o persona que lo solicita. Ingrese el Nro. <br>
              de Certificado ubicado en la parte inferior del código de barras del documento.<br>
@@ -17,12 +30,26 @@
             IMPORTANTE: La única información válida es la generada en la pantalla; el certificado visualizado<br>
             y puede ser descargado
         </p>
+
         <form class="" action="{% url 'documentos:certificado' %}" method="post">
           {% csrf_token %}
-          <input type="text" name="buscar_cedula" value="">
-          <input type="text" name="buscar_codigo" value="">
-          <button >Validar</button>
-      </form>
+
+          <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Cédula</span>
+            </div>
+            <input name="buscar_cedula" type="text" class="form-control" aria-describedby="basic-addon1" required='True'>
+          </div>
+
+          <div class="input-group col-md-3 mt-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Código Certificado</span>
+            </div>
+            <input name="buscar_codigo" type="text" class="form-control" aria-describedby="basic-addon1" required='True'>
+          </div>
+
+          <button class="btn btn-success mt-2">Validar</button>
+        </form>
     </div>
   </body>
 </html>

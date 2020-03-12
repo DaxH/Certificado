@@ -11,7 +11,7 @@ class Entidad(models.Model):
     )
     institucion = models.CharField(blank=True, max_length=100)
     representante = models.CharField(blank=True, max_length=100)
-    logo = models.ImageField(upload_to="")
+    logo = models.ImageField(upload_to="static/imagenes")
     tipo = models.CharField(choices=TIPO, max_length=1)
 
     def __str__(self):
