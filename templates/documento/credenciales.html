@@ -1,0 +1,25 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% block title %}Credenciales{% endblock title %}
+{% block body %}
+  <div class="container mt-3" align="center">
+    <h2 class="mt-5" >Validación de certificados</h2><br>
+    <p    </p>
+    <form class="" action="{% url 'documentos:certificado' %}" method="post">
+      {% csrf_token %}
+      <div class="input-group col-md-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Cédula</span>
+        </div>
+        <input name="buscar_cedula" type="number" class="form-control" aria-describedby="basic-addon1" required='True'>
+      </div>
+      <div class="input-group col-md-3 mt-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Código Certificado</span>
+        </div>
+        <input name="buscar_codigo" type="text" class="form-control" aria-describedby="basic-addon1" required='True'>
+      </div>
+      <button class="btn btn-success mt-2">Validar</button>
+    </form>
+  </div>
+{% endblock body %}

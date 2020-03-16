@@ -1,0 +1,13 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}Crear Certificado{% endblock title %}
+{% block body %}
+  <div class="container col-md-5">
+    <form class="" action="" method="POST">
+      {% csrf_token %}
+      {{ documento_form|crispy }}
+      <button type="success" name="button" class="btn btn-success">Guardar</button>
+    </form>
+  </div>
+{% endblock body %}
