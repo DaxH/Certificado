@@ -3,10 +3,14 @@
 {% load crispy_forms_tags %}
 {% block title %}Crear Certificado{% endblock title %}
 {% block body %}
-  <div class="container col-md-5">
+  <div class="container mt-5">
     <form class="" action="" method="POST">
+      <h1 align="center">Nuevo Participante</h1>
       {% csrf_token %}
-      {{ documento_form|crispy }}
+      <div class="form-group">
+
+        {{ usuario_form|crispy }}
+      </div>
       <button type="success" name="button" class="btn btn-success">Guardar</button>
     </form>
   </div>

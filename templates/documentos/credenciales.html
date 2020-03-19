@@ -7,13 +7,13 @@
     <p    </p>
     <form class="" action="{% url 'documentos:certificado' %}" method="post">
       {% csrf_token %}
-      <div class="input-group col-md-3">
+      <div class="input-group col-md-4">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Cédula</span>
         </div>
         <input name="buscar_cedula" type="number" class="form-control" aria-describedby="basic-addon1" required='True'>
       </div>
-      <div class="input-group col-md-3 mt-3">
+      <div class="input-group col-md-4 mt-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Código Certificado</span>
         </div>
