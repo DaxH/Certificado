@@ -1,0 +1,44 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% block title %}Certificado List{% endblock title %}
+{% block body %}
+  <link rel="stylesheet" href="/static/css/plugins/dataTables/datatables.min.css">
+  <div class="container mt-5">
+    <h1 align="center">Proyectos</h1>
+    <table class="table table-bordered" id="data-table">
+      <thead>
+        <tr>
+          <th>Nombre Proyecto</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Parroquia</th>
+          <th>Barrio</th>
+          <th>Entidades Participantes</th>
+          <th>Participantes Inscritos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for documento in documentos %}
+          <tr>
+            <td>{{ documento.nombre }}</td>
+            <td>{{ documento.fecha_inicio }}</td>
+            <td>{{ documento.fecha_fin }}</td>
+            <td>{{ documento.parroquia }}</td>
+            <td>{{ documento.barrio }}</td>
+            <td>
+              {% for entidades in documento.entidad_emisora.all %}
+              {{ entidades }},<br>
+              {% endfor %}
+            </td>
+            <td>{{ documento.usuario.count }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock body %}
+{% block javascripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static "js/plugins/dataTables/datatables.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/datatable.js" %}"></script>
+{% endblock %}

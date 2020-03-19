@@ -5,15 +5,16 @@
   <head>
     <meta charset="utf-8">
     <title>ISTL {% block title %}{% endblock %}</title>
+
     {% block stylesheets %}
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" href="{% static '/css/documento/input_number.css' %}">
     {% endblock stylesheets %}
+
   </head>
   {% endblock head %}
 
   <body>
-    <div class="container ">
       <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
         <a class="navbar-brand">
           <img src="{% static 'imagenes/logoistloja.png'  %}" height="35px">
@@ -24,19 +25,28 @@
               <a href="{% url 'index' %}" class="nav-link">Inicio</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable" href="#">Certificado</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable" href="#">Proyectos</a>
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Crear</a>
-                <a href="#" class="dropdown-item">Ver</a>
+                <a href="{% url 'documentos:certificado_list' %}" class="dropdown-item">Todos</a>
+                <a href="{% url 'documentos:certificado_create' %}" class="dropdown-item">Crear</a>
+                <a href="{% url 'documentos:credenciales' %}" class="dropdown-item">Certificado</a>
               </div>
+            </li>
+            <li class="nav-item">
+              <a href="https://tecnologicoloja.edu.ec/" target="_blank" class="nav-link">ISTL</a>
             </li>
           </ul>
         </div>
       </nav>
-    </div>
     {% block body %}
 
-    <a href="{% url 'documentos:credenciales' %}" class="btn btn-info">Certificados</a>
-    {% endblock %}
+    {% endblock body %}
   </body>
 </html>
+{% block javascripts %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock javascripts %}

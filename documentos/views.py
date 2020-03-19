@@ -7,7 +7,7 @@ from usuarios.models import Usuario
 
 def validar_credenciales(request):
 
-    return render(request, 'documento/credenciales.html')
+    return render(request, 'documentos/credenciales.html')
 
 def mostrar_certificado(request):
 
@@ -29,7 +29,7 @@ def mostrar_certificado(request):
                     'certificado':certificado,
             }
 
-            return render(request, 'documento/certificado.html', context)
+            return render(request, 'documentos/certificado.html', context)
 
         except Usuario.DoesNotExist:
 
@@ -46,14 +46,13 @@ def mostrar_certificado(request):
             }
 
     else:
-        return render(request, 'documento/certificado.html')
+        return render(request, 'documentos/certificado.html')
 
-    return render(request, 'documento/certificado.html', context)
+    return render(request, 'documentos/certificado.html', context)
 
 def documento_create(request):
 
     documento_form = DocumentoForm()
-
     if request.method == 'POST':
 
         documento_form = DocumentoForm(request.POST)
@@ -61,19 +60,30 @@ def documento_create(request):
         if documento_form.is_valid():
 
             documento_form.save()
+
             return redirect('documentos:credenciales')
 
         else:
 
             print('ERROR FORM DOCUMENTO ', documento_form.errors)
 
-
             context={
                     'documento_form':documento_form
             }
-            return render(request, 'documento/documento_create.html', context)
+            return render(request, 'documentos/documento_create.html', context)
 
     context={
             'documento_form':documento_form
     }
-    return render(request, 'documento/documento_create.html', context)
+    return render(request, 'documentos/documento_create.html', context)
+
+
+def documento_list(request):
+
+    documentos = Documento.objects.all().order_by('fecha_inicio')
+
+    context={
+            'documentos':documentos,
+    }
+
+    return render(request, 'documentos/certificado_list.html', context)
