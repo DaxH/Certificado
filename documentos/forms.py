@@ -5,10 +5,6 @@ class DateInput(forms.DateInput):
     """docstring forDateInput."""
     input_type = 'date'
 
-class DateTimeInput(forms.DateTimeInput):
-
-    input_type = 'datetime-local'
-
 
 class TimeInput(forms.TimeInput):
     """docstring forTime."""

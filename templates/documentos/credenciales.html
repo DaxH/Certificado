@@ -1,10 +1,9 @@
 {% extends "app/index.html" %}
 {% load staticfiles %}
 {% block title %}Credenciales{% endblock title %}
-{% block body %}
+{% block content %}
   <div class="container mt-3" align="center">
-    <h2 class="mt-5" >Validación de certificados</h2><br>
-    <p    </p>
+    <h2 class="mt-5" >Validación de certificados</h2>
     <form class="" action="{% url 'documentos:certificado' %}" method="post">
       {% csrf_token %}
       <div class="input-group col-md-4">
@@ -22,4 +21,4 @@
       <button class="btn btn-success mt-2">Validar</button>
     </form>
   </div>
-{% endblock body %}
+{% endblock content %}

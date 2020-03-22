@@ -3,10 +3,10 @@ from usuarios.forms import UsuarioForm
 
 # Create your views here.
 
-def usuario_create(request):
+def usuario_create(request, documento_pk):
 
     usuario_form = UsuarioForm()
-
+    print(documento_pk)
     if request.method == 'POST':
         usuario_form = UsuarioForm(request.POST)
 
@@ -14,17 +14,17 @@ def usuario_create(request):
 
             usuario_form.save()
 
-            return redirect('documentos:certificado_create')
-
         else:
             print('ERROR FORM USUARIO ', usuario_form.errors)
 
             context={
+                'documento_pk':documento_pk,
                 'usuario_form':usuario_form,
             }
             return render(request, 'usuarios/usuario_create.html', context)
 
     context={
+        'documento_pk':documento_pk,
         'usuario_form':usuario_form,
     }
 

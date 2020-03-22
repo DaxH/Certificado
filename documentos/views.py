@@ -4,17 +4,22 @@ from documentos.models import Documento, EntidadEmisora
 from documentos.forms import DocumentoForm
 
 from usuarios.models import Usuario
+from usuarios.forms import UsuarioForm
+
 
 def validar_credenciales(request):
 
     return render(request, 'documentos/credenciales.html')
 
 def mostrar_certificado(request):
+    '''Si las credenciales existen muestra el certificado que corresponde'''
 
+    #valores ingresados desde el template documentos/validar_credenciales.html
     input_cedula = request.POST.get('buscar_cedula')
     input_codigo_certificado = request.POST.get('buscar_codigo')
-    mensaje_error = False
 
+    mensaje_error = False
+    #validamos
     if input_cedula and input_codigo_certificado:
         try:
             usuario = Usuario.objects.get(cedula = input_cedula)
@@ -51,17 +56,17 @@ def mostrar_certificado(request):
     return render(request, 'documentos/certificado.html', context)
 
 def documento_create(request):
-
+    '''Funcion para crear un proyecto '''
     documento_form = DocumentoForm()
     if request.method == 'POST':
 
         documento_form = DocumentoForm(request.POST)
-
+        # validamos
         if documento_form.is_valid():
 
             documento_form.save()
 
-            return redirect('documentos:credenciales')
+            return redirect('documentos:certificado_list')
 
         else:
 
@@ -79,7 +84,7 @@ def documento_create(request):
 
 
 def documento_list(request):
-
+    '''Lista todos los Proyectos'''
     documentos = Documento.objects.all().order_by('fecha_inicio')
 
     context={
@@ -87,3 +92,36 @@ def documento_list(request):
     }
 
     return render(request, 'documentos/certificado_list.html', context)
+
+def documento_edit(request, documento_pk):
+
+    documento = Documento.objects.get(pk = documento_pk)
+    documento_form = DocumentoForm(instance = documento)
+    fecha_inicio =  documento.fecha_inicio
+    fecha_fin = documento.fecha_fin
+    if request.method == 'POST':
+        documento_form = DocumentoForm(request.POST, instance = documento)
+
+        if documento_form.is_valid():
+            documento_form.save()
+
+            return redirect ('documentos:certificado_list')
+        else:
+            print('ERROR FORM DOCUEMTNO ', documento_form.errors)
+
+            context={
+                    'fecha_inicio':fecha_inicio,
+                    'fecha_fin':fecha_fin,
+                    'documento_pk':documento_pk,
+                    'documento_form':documento_form
+            }
+
+            return render (request, 'documentos/certificado_edit.html', context)
+
+    context={
+            'fecha_inicio':fecha_inicio,
+            'fecha_fin':fecha_fin,
+            'documento_pk':documento_pk,
+            'documento_form':documento_form
+    }
+    return render (request, 'documentos/certificado_edit.html', context)

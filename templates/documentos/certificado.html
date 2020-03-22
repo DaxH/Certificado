@@ -1,7 +1,7 @@
 {% extends "app/index.html" %}
 {% load staticfiles %}
 {% block title %}Certificado{% endblock title %}
-{% block body %}
+{% block content %}
   {% if mensaje_error %}
     <div class="container">
       <div class="alert alert-danger mt-2" role="alert">
@@ -54,4 +54,4 @@
       </div>
    </div>
    {% endif %}
-{% endblock body %}
+{% endblock content %}
