@@ -20,11 +20,11 @@ class Documento(models.Model):
     hora = models.TimeField(null = True, blank=False)
     fecha_fin = models.DateField(null = True, blank=False)
     duracion = models.IntegerField(blank=False, null=False)
-    usuario = models.ManyToManyField(Usuario, null=True)
+    usuario = models.ManyToManyField(Usuario, null=True, blank=True)
     barrio = models.CharField(null=True, blank=True, max_length=30)
     parroquia = models.CharField(null=True, blank=True, max_length=30)
-    carrera = models.ForeignKey(Carrera, null=True, on_delete=models.CASCADE)
-    entidad_emisora = models.ManyToManyField(EntidadEmisora, null=True)
+    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, null=True, blank=True)
+    entidad_emisora = models.ManyToManyField(EntidadEmisora, null=True, blank=True)
 
     def __str__(self):
         return self.nombre

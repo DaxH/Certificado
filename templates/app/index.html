@@ -7,38 +7,31 @@
     <title>ISTL {% block title %}{% endblock %}</title>
 
     {% block stylesheets %}
+      <!-- font awesome CDN -->
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <!-- bootstrap4 CDN -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" href="{% static '/css/documento/input_number.css' %}">
+      <link rel="stylesheet" href="{% static '/css/index/index.css' %}">
     {% endblock stylesheets %}
 
   </head>
   {% endblock head %}
 
   <body>
-      <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-        <a class="navbar-brand">
-          <img src="{% static 'imagenes/logoistloja.png'  %}" height="35px">
-        </a>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a href="{% url 'index' %}" class="nav-link">Inicio</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="desplegable" href="#">Proyectos</a>
-              <div class="dropdown-menu">
-                <a href="{% url 'documentos:certificado_list' %}" class="dropdown-item">Todos</a>
-                <a href="{% url 'documentos:certificado_create' %}" class="dropdown-item">Crear</a>
-                <a href="{% url 'documentos:credenciales' %}" class="dropdown-item">Certificado</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="https://tecnologicoloja.edu.ec/" target="_blank" class="nav-link">ISTL</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
     {% block body %}
+
+      {% block navbar %}
+        {% include "app/nav_bar.html" %}
+      {% endblock navbar %}
+
+      {% block content %}
+
+      {% endblock content %}
+
+      {% block footer %}
+        {% include "app/footer.html" %}
+      {% endblock footer %}
 
     {% endblock body %}
   </body>

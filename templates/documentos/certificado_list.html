@@ -1,7 +1,7 @@
 {% extends "app/index.html" %}
 {% load staticfiles %}
 {% block title %}Certificado List{% endblock title %}
-{% block body %}
+{% block content %}
   <link rel="stylesheet" href="/static/css/plugins/dataTables/datatables.min.css">
   <div class="container mt-5">
     <h1 align="center">Proyectos</h1>
@@ -15,6 +15,7 @@
           <th>Barrio</th>
           <th>Entidades Participantes</th>
           <th>Participantes Inscritos</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -31,14 +32,18 @@
               {% endfor %}
             </td>
             <td>{{ documento.usuario.count }}</td>
+            <td style="font-size: 24px;">
+              <a href="{% url 'documentos:certificado_edit' documento.pk %}" title="Editar"><i class="fa fa-edit fa-10x"></i></a>
+              <a href="#" title="Ver"><i class="fa fa-eye fa-10x"></i></a> 
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-{% endblock body %}
+{% endblock content %}
 {% block javascripts %}
   {{ block.super }}
   <script type="text/javascript" src="{% static "js/plugins/dataTables/datatables.min.js" %}"></script>
   <script type="text/javascript" src="{% static "js/datatable.js" %}"></script>
-{% endblock %}
+{% endblock javascripts %}
