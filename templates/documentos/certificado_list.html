@@ -3,7 +3,7 @@
 {% block title %}Certificado List{% endblock title %}
 {% block content %}
   <link rel="stylesheet" href="/static/css/plugins/dataTables/datatables.min.css">
-  <div class="container mt-5">
+  <div class="container">
     <h1 align="center">Proyectos</h1>
     <table class="table table-bordered" id="data-table">
       <thead>
@@ -34,7 +34,7 @@
             <td>{{ documento.usuario.count }}</td>
             <td style="font-size: 24px;">
               <a href="{% url 'documentos:certificado_edit' documento.pk %}" title="Editar"><i class="fa fa-edit fa-10x"></i></a>
-              <a href="#" title="Ver"><i class="fa fa-eye fa-10x"></i></a> 
+              <a href="{% url 'documentos:certificado_detail' documento.pk %}" title="Ver"><i class="fa fa-eye fa-10x"></i></a>
             </td>
           </tr>
         {% endfor %}

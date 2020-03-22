@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block title %}Nuevo Participante{% endblock title %}
 {% block content %}
-  <div class="container col-md-5 mt-5">
+  <div class="container col-md-5">
     <form class="" action="{% url 'usuarios:usuario_create' documento_pk%}" method="POST">
       <h1 align="center">Nuevo Participante</h1>
       {% csrf_token %}

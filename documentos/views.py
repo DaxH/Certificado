@@ -85,7 +85,7 @@ def documento_create(request):
 
 def documento_list(request):
     '''Lista todos los Proyectos'''
-    documentos = Documento.objects.all().order_by('fecha_inicio')
+    documentos = Documento.objects.all().order_by('-fecha_inicio')
 
     context={
             'documentos':documentos,
@@ -125,3 +125,12 @@ def documento_edit(request, documento_pk):
             'documento_form':documento_form
     }
     return render (request, 'documentos/certificado_edit.html', context)
+
+def documento_detail(request, documento_pk):
+
+    documento = Documento.objects.get(pk = documento_pk)
+
+    context = {
+                'documento':documento
+    }
+    return render(request, 'documentos/certificado_detail.html', context)

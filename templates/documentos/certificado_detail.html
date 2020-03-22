@@ -1,0 +1,76 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% block title %}Detalle Proyecto{% endblock title %}
+{% block content %}
+  <div class="container col-md-7">
+    <div class="card">
+      <div class="card-header" align="center">
+        <h1>Protecto {{ documento.nombre }}</h1>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped" style="font-size: 18px;">
+          <tbody>
+            <tr>
+              <th>Nombre Proyecto:</th>
+              <td>{{ documento.nombre }}</td>
+            </tr>
+            <tr>
+              <th>Codigo Proyecto:</th>
+              <td>{{ documento.codigo }}</td>
+            </tr>
+            <tr>
+              <th>Fecha Inicio:</th>
+              <td>{{ documento.fecha_inicio }}</td>
+            </tr>
+            <tr>
+              <th>Fecha Fin:</th>
+              <td>{{ documento.fecha_fin }}</td>
+            </tr>
+            <tr>
+              <th>Hora:</th>
+              <td>{{ documento.hora }}</td>
+            </tr>
+            <tr>
+              <th>Duración:</th>
+              <td>{{ documento.duracion }} horas</td>
+            </tr>
+            <tr>
+              <th>Barrio:</th>
+              <td>{{ documento.barrio }}</td>
+            </tr>
+            <tr>
+              <th>Parroquia:</th>
+              <td>{{ documento.parroquia }}</td>
+            </tr>
+            <tr>
+              <th>Carrera:</th>
+              <td>{{ documento.carrera }}</td>
+            </tr>
+            <tr>
+              <th>Entidad(es):</th>
+              {% for entidad in documento.entidad_emisora.all %}
+              <tr>
+                <td></td>
+                <td>{{ entidad }}</td>
+              </tr>
+              {% endfor %}
+            </tr>
+            <tr>
+              <th>Participantes:</th>
+              <td></td>
+              {% for participante in documento.usuario.all %}
+                <tr>
+                  <td></td>
+                  <td>{{ participante }}</td>
+                </tr>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'documentos:certificado_list' %}" class="btn btn-info">Volver</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -2,9 +2,10 @@
 {% load staticfiles %}
 {% block title %}Credenciales{% endblock title %}
 {% block content %}
-  <div class="container mt-3" align="center">
-    <h2 class="mt-5" >Validación de certificados</h2>
-    <form class="" action="{% url 'documentos:certificado' %}" method="post">
+  <div class="container" align="center">
+    <h2>Validación de Credenciales</h2>
+    <h3 class="mt-5">Ingresa tu <strong>Cédula</strong> y el <strong>Código del Proyecto</strong> al que asististe</h3>
+    <form class="mt-5" action="{% url 'documentos:certificado' %}" method="post">
       {% csrf_token %}
       <div class="input-group col-md-4">
         <div class="input-group-prepend">
@@ -18,7 +19,7 @@
         </div>
         <input name="buscar_codigo" type="text" class="form-control" aria-describedby="basic-addon1" required='True'>
       </div>
-      <button class="btn btn-success mt-2">Validar</button>
+      <button class="btn btn-success mt-4">Validar</button>
     </form>
   </div>
 {% endblock content %}
