@@ -1,0 +1,17 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}Editrar Usuario{% endblock title %}
+{% block content %}
+<div class="container col-md-5">
+  <form class="" action="" method="POST">
+    <h1 align="center">Editar Usuario</h1>
+    {% csrf_token %}
+    <div class="form-group">
+      {{ usuario_form|crispy }}
+    </div>
+    <button type="success" name="button" class="btn btn-success">Guardar</button>
+    <a href="{% url 'usuarios:usuario_list'%}" class="btn btn-info" align="right">Volver</a>
+  </form>
+</div>
+{% endblock content %}

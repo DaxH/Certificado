@@ -8,7 +8,7 @@
         <h1>Protecto {{ documento.nombre }}</h1>
       </div>
       <div class="card-body">
-        <table class="table table-striped" style="font-size: 18px;">
+        <table class="table table-striped" id="table-detail">
           <tbody>
             <tr>
               <th>Nombre Proyecto:</th>
@@ -48,22 +48,19 @@
             </tr>
             <tr>
               <th>Entidad(es):</th>
-              {% for entidad in documento.entidad_emisora.all %}
-              <tr>
-                <td></td>
-                <td>{{ entidad }}</td>
-              </tr>
-              {% endfor %}
+              <td>
+                {% for entidad in documento.entidad_emisora.all %}
+                {{ entidad }},<br>
+                {% endfor %}
+              </td>
             </tr>
             <tr>
               <th>Participantes:</th>
-              <td></td>
-              {% for participante in documento.usuario.all %}
-                <tr>
-                  <td></td>
-                  <td>{{ participante }}</td>
-                </tr>
-              {% endfor %}
+              <td>
+                {% for participante in documento.usuario.all %}
+                {{ participante }},<br>
+                {% endfor %}
+              </td>
             </tr>
           </tbody>
         </table>

@@ -1,0 +1,45 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% block title %}Detalle Participante{% endblock title %}
+{% block content %}
+  <div class="container col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <h1 align="center">Detalle Usuario</h1>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped" id="table-detail">
+          <tbody>
+            <tr>
+              <th>Cédula:</th>
+              <td>{{ usuario.cedula }}</td>
+            </tr>
+            <tr>
+              <th>Nombre(s):</th>
+              <td>{{ usuario.nombre }}</td>
+            </tr>
+            <tr>
+              <th>Apellido(s):</th>
+              <td>{{ usuario.apellido }}</td>
+            </tr>
+            <tr>
+              <th>Teléfono:</th>
+              <td>{{ usuario.telefono }}</td>
+            </tr>
+            <tr>
+              <th>Proyectos</th>
+              <td>
+                {% for proyecto in proyectos %}
+                  {{ proyecto }},<br>
+                {% endfor %}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'usuarios:usuario_list' %}" class="btn btn-info">Volver</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

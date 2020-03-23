@@ -13,7 +13,7 @@ class UsuarioForm(forms.ModelForm):
                 'cedula':'Cédula',
                 'nombre':'Nombe(s)',
                 'apellido':'Apellido(s)',
-                'telefono':'Télefono'
+                'telefono':'Teléfono'
         }
         widgets={
                 'telefono':forms.NumberInput(),

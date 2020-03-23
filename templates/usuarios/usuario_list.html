@@ -1,0 +1,40 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% block title %}Lista Participante{% endblock title %}
+{% block content %}
+  <link rel="stylesheet" href="/static/css/plugins/dataTables/datatables.min.css">
+  <div class="container">
+    <h1 align="center">Usuarios</h1>
+    <table class="table table-striped" id="data-table">
+      <thead>
+        <tr>
+          <th>Cédula</th>
+          <th>Nombre(s)</th>
+          <th>Apellido(s)</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+          <tr>
+            <td>{{ usuario.cedula }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.telefono }}</td>
+            <td style="font-size: 24px;">
+              <a href="{% url 'usuarios:usuario_edit' usuario.pk %}" title="Editar"><i class="fa fa-edit fa-10x"></i></a>
+              <a href="{% url 'usuarios:usuario_detail' usuario.pk %}" title="Ver"><i class="fa fa-eye fa-10x"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+{% endblock content %}
+{% block javascripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static "js/plugins/dataTables/datatables.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/datatable.js" %}"></script>
+{% endblock javascripts %}
