@@ -12,8 +12,11 @@
       </div>
     </div>
   {% else %}
+  <div class="container" align='right'>
+    <button type="button" name="button" class="btn btn-primary" onclick="jQuery('#imprimir-certificado').print()">Imprimir</button>
+  </div>
     {% if  input_cedula  and  input_codigo_certificado  %}
-      <div align = 'center' class="container">
+      <div align = 'center' class="container" id="imprimir-certificado">
         <h1 >Certificado</h1>
         <div class = "col" align="center">
           <img  src="{% static 'imagenes/Sene.png' %}"  width="150" height="50">
@@ -58,3 +61,7 @@
     </div>
    {% endif %}
 {% endblock content %}
+{% block javascripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'js\jQuery.print.js' %}"></script>
+{% endblock javascripts %}
