@@ -1,3 +1,4 @@
+from django_select2.forms import *
 from django import forms
 from documentos.models import *
 
@@ -25,6 +26,8 @@ class DocumentoForm(forms.ModelForm):
             'fecha_inicio':DateInput(),
             'hora':TimeInput(),
             'fecha_fin':DateInput(),
+            'usuario':Select2MultipleWidget,
+            'entidad_emisora':Select2MultipleWidget,
         }
 
 class EntidadEmisoraForm(forms.ModelForm):

@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 {% block title %}Editar Proyecto{% endblock title %}
 {% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <div class="container col-md-7">
   <form class="" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -60,3 +62,12 @@
   </form>
 </div>
 {% endblock content %}
+{% block javascripts %}
+  {{ block.super }}
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  <script type="text/javascript">
+    $('.django-select2').select2({
+        placeholder: 'Seleccione uno',
+    });
+  </script>
+{% endblock javascripts %}
