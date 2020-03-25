@@ -1,5 +1,5 @@
 from django import forms
-from documentos.models import Documento
+from documentos.models import *
 
 class DateInput(forms.DateInput):
     """docstring forDateInput."""
@@ -26,3 +26,10 @@ class DocumentoForm(forms.ModelForm):
             'hora':TimeInput(),
             'fecha_fin':DateInput(),
         }
+
+class EntidadEmisoraForm(forms.ModelForm):
+    """docstring for EntidadEmisoraForm."""
+    class Meta:
+        model = EntidadEmisora
+
+        fields='__all__'

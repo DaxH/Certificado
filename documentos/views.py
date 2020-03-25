@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 
 from documentos.models import Documento, EntidadEmisora
-from documentos.forms import DocumentoForm
+from documentos.forms import DocumentoForm, EntidadEmisoraForm
 
 from usuarios.models import Usuario
 from usuarios.forms import UsuarioForm
@@ -113,7 +113,7 @@ def documento_edit(request, documento_pk):
                     'fecha_inicio':fecha_inicio,
                     'fecha_fin':fecha_fin,
                     'documento_pk':documento_pk,
-                    'documento_form':documento_form
+                    'documento_form':documento_form,
             }
 
             return render (request, 'documentos/certificado_edit.html', context)
@@ -122,7 +122,7 @@ def documento_edit(request, documento_pk):
             'fecha_inicio':fecha_inicio,
             'fecha_fin':fecha_fin,
             'documento_pk':documento_pk,
-            'documento_form':documento_form
+            'documento_form':documento_form,
     }
     return render (request, 'documentos/certificado_edit.html', context)
 
@@ -134,3 +134,74 @@ def documento_detail(request, documento_pk):
                 'documento':documento
     }
     return render(request, 'documentos/certificado_detail.html', context)
+
+def entidad_create(request, documento_pk):
+
+    entidad_form = EntidadEmisoraForm()
+
+    if request.method == 'POST':
+        entidad_form = EntidadEmisoraForm(request.POST, request.FILES)
+
+        if entidad_form.is_valid():
+
+            entidad_form.save()
+
+        else:
+            context={
+                    'entidad_form':entidad_form,
+                    'documento_pk':documento_pk
+            }
+            return render(request, 'documentos/entidad_create.html', context)
+
+    context={
+            'entidad_form':entidad_form,
+            'documento_pk':documento_pk
+
+    }
+    return render(request, 'documentos/entidad_create.html', context)
+
+
+def entidad_list(request):
+
+    entidades = EntidadEmisora.objects.all()
+
+    context={
+            'entidades':entidades,
+    }
+
+    return render(request, 'documentos/entidad_list.html', context)
+
+def entidad_detail(request, entidad_pk):
+
+    entidad = EntidadEmisora.objects.get(pk = entidad_pk)
+
+    context={
+            'entidad':entidad
+    }
+
+    return render(request, 'documentos/entidad_detail.html', context)
+
+def entidad_edit(request, entidad_pk):
+
+    entidad = EntidadEmisora.objects.get(pk = entidad_pk)
+    entidad_form = EntidadEmisoraForm(instance = entidad)
+
+    if request.method == "POST":
+        entidad_form = EntidadEmisoraForm(request.POST, request.FILES, instance = entidad)
+
+        if entidad_form.is_valid():
+            entidad_form.save()
+
+        else:
+
+            context={
+                    'entidad_form':entidad_form,
+            }
+
+            return render(request, 'documentos/entidad_edit.html', context)
+
+    context={
+            'entidad_form':entidad_form,
+    }
+
+    return render(request, 'documentos/entidad_edit.html', context)

@@ -1,0 +1,14 @@
+{% extends "app/index.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}Crear Proyecto{% endblock title %}
+{% block content %}
+  <div class="container col-md-5">
+    <form class="" action="{% url 'documentos:entidad_create' documento_pk %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ entidad_form|crispy }}
+      <button type="success" name="button" class="btn btn-success">Guardar</button>
+      <a href="{% url 'documentos:certificado_edit' documento_pk %}" class="btn btn-info">Volver</a>
+    </form>
+  </div>
+{% endblock content %}
