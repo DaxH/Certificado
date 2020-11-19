@@ -27,8 +27,4 @@ urlpatterns = [
     path(r'documentos/', include(('documentos.urls', 'documentos'), namespace='documentos')),
     path(r'usuarios/', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
 
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
