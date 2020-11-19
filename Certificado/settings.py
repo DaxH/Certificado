@@ -135,29 +135,4 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
-if  socket.gethostname().startswith('DAX-PC') : # True in your local computer
-    print('LOCAL EVIRONMENT')
-    DEBUG = True
-    PRODUCTION_ENV = False
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
-    django_heroku.settings(locals())
-else: #In production
-    print('PRODUCTION EVIRONMENT')
-    PRODUCTION_ENV = True
-    import dj_database_url
-    DEBUG = True
-    import django_heroku
-    # Activate Django-Heroku without database setup.
-    config = locals()
-    django_heroku.settings(config, databases=False)
-    # Manual configuration of database
-    import dj_database_url
-    conn_max_age = config.get('CONN_MAX_AGE', 600)  # Used in django-heroku
-    config['DATABASES'] = {
-        'default': dj_database_url.parse(
-            os.environ.get('DATABASE_URL'),
-            engine='tenant_schemas.postgresql_backend',
-            conn_max_age=conn_max_age,
-            ssl_require=True,
-        )
-    }
+django_heroku.settings(locals())
