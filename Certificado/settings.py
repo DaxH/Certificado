@@ -136,19 +136,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-FIREBASE_CONFIG ={
-  "type": os.environ['TYPE'],
-  "project_id": os.environ['PROJECT_ID'],
-  "private_key_id": os.environ['PRIVATE_KEY_ID'],
-  "private_key": os.environ['PRIVATE_KEY'],
-  "client_email": os.environ['CLIENT_EMAIL'],
-  "client_id": os.environ['CLIENT_ID'],
-  "auth_uri": os.environ['AUTH_URI'],
-  "token_uri":os.environ['TOKEN_URI'],
-  "auth_provider_x509_cert_url": os.environ['AUTH_PROVIDER_X509_CERT_URL'],
-  "client_x509_cert_url":os.environ['CLIENT_X509_CERT_URL']
-}
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
